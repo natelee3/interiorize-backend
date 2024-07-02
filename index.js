@@ -1,5 +1,6 @@
 'use strict';
-//Adding test comment
+
+const functions = require('@google-cloud/functions-framework');
 
 const http = require('http');
 const hostname = '127.0.0.1';
@@ -15,11 +16,11 @@ app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
-server.listen(port, hostname, () => {
-    console.log(`Server is running at ${hostname}:${port}`)
-});
+// server.listen(port, hostname, () => {
+//     console.log(`Server is running at ${hostname}:${port}`)
+// });
 
 const rootController = require('./routes/index');
 const itemController = require('./routes/items');
@@ -33,3 +34,4 @@ app.use('/orders', orderController);
 app.use('/users', userController);
 app.use('/quizzes', quizController);
 
+exports.api = functions.http('api', app);
