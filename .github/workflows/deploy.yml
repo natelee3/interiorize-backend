@@ -21,6 +21,15 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
 
+      - id: secrets
+        uses: "google-github-actions/get-secretmanager-secrets@v2"
+        with:
+          secrets: |-
+            token:titanium-spider-428214-u0/interiorize-db-host
+
+      - id: test-secret-access
+        run: echo '${{ steps.secrets.outputs.token }}'
+
       - uses: google-github-actions/deploy-cloud-functions@v3
         timeout-minutes: 10
         with:
@@ -29,8 +38,8 @@ jobs:
           source_dir: src
           entry_point: api
           secrets: |-
-            DB_HOST=${{ env.PROJECT_PREFIX}}/interiorize-db-host
-            DB_NAME=${{ env.PROJECT_PREFIX}}/interiorize-db-name
-            DB_USER=${{ env.PROJECT_PREFIX}}/interiorize-db-user
-            JWKSURI=${{ env.PROJECT_PREFIX}}/interiorize-auth0-jwks-uri
-            ISSUER=${{ env.PROJECT_PREFIX}}/interiorize-auth0-issuer
+            DB_HOST=${{ env.PROJECT_PREFIX }}/interiorize-db-host
+            DB_NAME=${{ env.PROJECT_PREFIX }}/interiorize-db-name
+            DB_USER=${{ env.PROJECT_PREFIX }}/interiorize-db-user
+            JWKSURI=${{ env.PROJECT_PREFIX }}/interiorize-auth0-jwks-uri
+            ISSUER=${{ env.PROJECT_PREFIX }}/interiorize-auth0-issuer
