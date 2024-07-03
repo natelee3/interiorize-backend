@@ -5,7 +5,7 @@ on:
     branches: "test-gha"
 
 env:
-  PROJECT_PREFIX: projects/${{ secrets.GCP_PROJECT_ID }}/secrets
+  PROJECT_PREFIX: projects/titanium-spider-428214-u0/secrets
 
 jobs:
   deploy-to-cloud-functions:
@@ -21,23 +21,14 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
 
-      - id: secrets
-        uses: "google-github-actions/get-secretmanager-secrets@v2"
-        with:
-          secrets: |-
-            token:titanium-spider-428214-u0/interiorize-db-host
-
-      - id: test-secret-access
-        run: echo '${{ steps.secrets.outputs.token }}'
-
-      - uses: google-github-actions/deploy-cloud-functions@v3
+      - uses: google-github-actions/deploy-cloud-functions@v2
         timeout-minutes: 10
         with:
           name: interiorize-function
           runtime: nodejs20
           source_dir: src
           entry_point: api
-          secrets: |-
+          secret_environment_variables: |-
             DB_HOST=${{ env.PROJECT_PREFIX }}/interiorize-db-host
             DB_NAME=${{ env.PROJECT_PREFIX }}/interiorize-db-name
             DB_USER=${{ env.PROJECT_PREFIX }}/interiorize-db-user
