@@ -8,4 +8,7 @@ VALUES
     ('Yellow'),
     ('Green'),
     ('Purple'),
-    ('Orange')
+    ('Orange'),
+    ('9'),
+    ('Gray'),
+    ('Brown')

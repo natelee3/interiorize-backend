@@ -2,10 +2,7 @@ name: Deploy to cloud functions
 
 on:
   push:
-    branches: "test-gha"
-
-env:
-  PROJECT_PREFIX: projects/titanium-spider-428214-u0/secrets
+    branches: main
 
 jobs:
   deploy-to-cloud-functions:

@@ -7,6 +7,11 @@ CREATE TABLE users(
     UNIQUE(nickname)
 );
 
+CREATE TABLE colors(
+    id serial PRIMARY KEY,
+    color_name text
+);
+
 CREATE TABLE items(
     id serial PRIMARY KEY,
     item_name text,
@@ -48,14 +53,10 @@ CREATE TABLE items_tags(
     tag_id integer REFERENCES tags(id)
 );
 
-CREATE TABLE colors(
-    id serial PRIMARY KEY,
-    color_name text
-);
 
 CREATE TABLE quizzes(
     id serial PRIMARY KEY,
-    user_id integer REFERENCES UNIQUE users(id),
+    user_id integer REFERENCES users(id) UNIQUE,
     budget integer default 0,
     color_one_id integer REFERENCES colors(id),
     color_two_id integer REFERENCES colors(id),
