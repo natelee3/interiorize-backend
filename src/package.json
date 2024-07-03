@@ -2,14 +2,14 @@
   "name": "interiorize-backend",
   "version": "1.0.0",
   "description": "",
+  "license": "UNLICENSED",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "func": "functions-framework --target=api --port 3333"
+    "watch": "npm-watch start",
+    "start": "functions-framework --target=api --port 3333"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "watch": {
+    "start": "*.js"
+  },
   "dependencies": {
     "@google-cloud/functions-framework": "^3.4.0",
     "cors": "^2.8.5",
@@ -20,6 +20,6 @@
     "pg-promise": "^10.11.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "npm-watch": "^0.13.0"
   }
 }
