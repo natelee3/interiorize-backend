@@ -17,7 +17,8 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
+          project_id: titanium-spider-428214-u0
+          workload_identity_provider: projects/419282086064/locations/global/workloadIdentityPools/github/providers/interiorize-backend
 
       - id: deploy
         uses: google-github-actions/deploy-cloud-functions@v3
@@ -25,4 +26,5 @@ jobs:
         with:
           name: interiorize-function
           runtime: nodejs20
+          source_dir: src
           entry_point: api
