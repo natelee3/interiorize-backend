@@ -17,9 +17,15 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
-          # project_id: titanium-spider-428214-u0
-          # workload_identity_provider: projects/419282086064/locations/global/workloadIdentityPools/github/providers/interiorize-backend
+          # credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
+          project_id: titanium-spider-428214-u0
+          workload_identity_provider: projects/419282086064/locations/global/workloadIdentityPools/github/providers/interiorize-backend
+          secrets: |-
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            DB_USER=${{ secrets.DB_USER }}
+            JWKSURI=${{ secrets.AUTH0_ISSUER }}/.well-known/jwks.json
+            ISSUER=${{ secrets.AUTH0_ISSUER }}
 
       - id: deploy
         uses: google-github-actions/deploy-cloud-functions@v3
