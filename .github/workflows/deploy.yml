@@ -21,14 +21,14 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
 
-      - uses: google-github-actions/deploy-cloud-functions@v2
+      - uses: google-github-actions/deploy-cloud-functions@v3
         timeout-minutes: 10
         with:
           name: interiorize-function
           runtime: nodejs20
           source_dir: src
           entry_point: api
-          secret_environment_variables: |-
+          secrets: |-
             DB_HOST=${{ env.PROJECT_PREFIX }}/interiorize-db-host
             DB_NAME=${{ env.PROJECT_PREFIX }}/interiorize-db-name
             DB_USER=${{ env.PROJECT_PREFIX }}/interiorize-db-user
