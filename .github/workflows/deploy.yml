@@ -28,9 +28,9 @@ jobs:
           runtime: nodejs20
           source_dir: src
           entry_point: api
-          secrets: |-
-            DB_HOST=${{ env.PROJECT_PREFIX }}/interiorize-db-host
-            DB_NAME=${{ env.PROJECT_PREFIX }}/interiorize-db-name
-            DB_USER=${{ env.PROJECT_PREFIX }}/interiorize-db-user
-            JWKSURI=${{ env.PROJECT_PREFIX }}/interiorize-auth0-jwks-uri
-            ISSUER=${{ env.PROJECT_PREFIX }}/interiorize-auth0-issuer
+          environment_variables: |-
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            DB_USER=${{ secrets.DB_USER }}
+            JWKSURI=${{ secrets.AUTH0_ISSUER }}/.well-known/jwks.json
+            ISSUER=${{ secrets.AUTH0_ISSUER }}/
