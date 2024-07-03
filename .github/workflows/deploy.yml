@@ -32,5 +32,6 @@ jobs:
             DB_HOST=${{ secrets.DB_HOST }}
             DB_NAME=${{ secrets.DB_NAME }}
             DB_USER=${{ secrets.DB_USER }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
             JWKSURI=${{ secrets.AUTH0_ISSUER }}/.well-known/jwks.json
             ISSUER=${{ secrets.AUTH0_ISSUER }}/
